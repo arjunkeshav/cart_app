@@ -1,9 +1,14 @@
 ///list of urls
 class Urls {
   ///base urls
-  static const String baseUrl = 'https://flatmates-dev.live.untanglestrategy.com';
+  static const String baseUrl = 'https://dev.myg.in';
 
 //  static const String baseUrl = 'https://flatmates-central.live.untanglestrategy.com';
+
+  ///category
+  static const String ALL_CATEGORY = "/API/main_category.php";
+  static const String LATEST_ITEM_LIST = "/API/new_arrivals.php";
+  static const String TRENDING_ITEM_LIST = "/API/trending.php";
 
   /// urls
   static const String VERIFY = "/user/user-signup/";

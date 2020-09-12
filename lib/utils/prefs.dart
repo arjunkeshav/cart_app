@@ -15,6 +15,7 @@ class Prefs {
   static const String _IS_LOGGED_IN = "is_logged_in";
 
   static const String REQUESTED_FLAT_ID = "requested_flat_id";
+  static const String _RECENT_SEARCH_LIST = "recent_search_list";
 
 
   Prefs();
@@ -76,6 +77,16 @@ class Prefs {
           _sharedPreferences.getBool(_IS_FLAT_REQUESTED)
       ? true
       : false;
+
+  ///saving  the recent search list
+  void saveRecentSearch({List<String> searchList}) {
+    _sharedPreferences.setStringList(_RECENT_SEARCH_LIST, searchList);
+  }
+
+  ///get method  recent search list
+  List<String> getRecentSearchList() =>
+      _sharedPreferences.getStringList(_RECENT_SEARCH_LIST);
+
 
 //  /// Collecting data of add flat form
 //  void saveAddFlatData(AddFlatRequestData result) {

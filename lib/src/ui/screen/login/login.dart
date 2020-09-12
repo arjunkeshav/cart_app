@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cartapp/src/ui/screen/cart/checkout_page.dart';
+import 'package:cartapp/src/ui/screen/home/bottom_navigation.dart';
 import 'package:cartapp/src/ui/screen/login/sign_up.dart';
+import 'package:cartapp/src/ui/screen/order/order_history.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -20,8 +23,13 @@ class _LoginState extends State<Login> {
         decoration: new BoxDecoration(
           gradient: new LinearGradient(
             colors: [
-              Colors.white,
-              Color(0xFFDDDDDD)
+              Color(0xFFFFFFF),
+              Color(0xFF0000F),
+
+
+
+
+
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -50,7 +58,7 @@ class _LoginState extends State<Login> {
                                 style: Theme
                                     .of(context)
                                     .textTheme
-                                    .headline5.copyWith(fontWeight: FontWeight.w700),
+                                    .headline1.copyWith(fontWeight: FontWeight.w700),
                               ),
                               SizedBox(
                                 height: 12,
@@ -126,7 +134,10 @@ class _LoginState extends State<Login> {
                         height: 40,
                         minWidth: MediaQuery.of(context).size.width,
                         child: FlatButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                CheckoutPage()));
+                          },
                           child: Text(
                             "SIGN IN",
                             style: Theme.of(context)
@@ -251,8 +262,8 @@ class _LoginState extends State<Login> {
                                 image: new CachedNetworkImageProvider(
                                     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png")),
                           ),
-                          width: MediaQuery.of(context).size.height*.04,
-                          height: MediaQuery.of(context).size.height * .04,
+                          width: MediaQuery.of(context).size.height*.03,
+                          height: MediaQuery.of(context).size.height * .03,
                         ),
                       ),
                     ),

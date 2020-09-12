@@ -60,8 +60,8 @@ class AppTheme {
   );
 
   static final TextTheme _lightTextTheme = TextTheme(
-      headline5: _lightScreenHeadingTextStyle,
-      headline1: _lightScreenSubHeadTextStyle,
+      headline1: _lightScreenHeadingTextStyle,
+      headline5: _lightScreenSubHeadTextStyle,
       subtitle1: _lightScreenSubTitleTextStyle,
       bodyText1: _lightScreenBody1TextStyle,
       bodyText2: _lightScreenBody2TextStyle,
@@ -77,12 +77,13 @@ class AppTheme {
   );
 
   static final TextStyle _lightScreenHeadingTextStyle = TextStyle(
-      fontSize: 34.0, color: _lightOnPrimaryColor, letterSpacing: 0.25);
+      fontSize: 26.0, color: _lightOnPrimaryColor, letterSpacing: 0.25,
+      fontWeight: FontWeight.w900);
   static final TextStyle _lightScreenSubHeadTextStyle = TextStyle(
-      fontSize: 24.0,
+      fontSize: 20.0,
       color: _lightOnPrimaryColor,
       letterSpacing: 0.15,
-      fontWeight: FontWeight.w700);
+      fontWeight: FontWeight.w400);
   static final TextStyle _lightScreenSubTitleTextStyle = TextStyle(
       fontSize: 14.0, color: _lightOnPrimaryColor, letterSpacing: 0.15);
   static final TextStyle _lightScreenBody1TextStyle = TextStyle(

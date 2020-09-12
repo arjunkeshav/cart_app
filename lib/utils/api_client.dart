@@ -1,100 +1,114 @@
-//import 'dart:async';
-//import 'dart:io';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:cartapp/utils/constants/urls.dart';
+import 'package:dio/adapter.dart';
+import 'package:dio/dio.dart';
+
+import 'package:flutter/material.dart';
+
+class ApiClient {
+  ApiClient() {
+    initClient();
+  }
+
+//for api client testing only
+  ApiClient.test({@required this.dio});
+
+  Dio dio;
+  BaseOptions _baseOptions;
+
+  initClient() async {
+    _baseOptions = new BaseOptions(
+        baseUrl: Urls.baseUrl,
+        connectTimeout: 30000,
+        receiveTimeout: 1000000,
+        followRedirects: true,
+        headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+          HttpHeaders.acceptHeader: 'application/json',
+        },
+        responseType: ResponseType.json,
+        receiveDataWhenStatusError: true);
+
+    dio = Dio(_baseOptions);
+
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) {
+        return true;
+      };
+    };
+
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (RequestOptions reqOptions) {
+        return reqOptions;
+      },
+      onError: (DioError dioError) {
+        return dioError.response;
+      },
+    ));
+  }
+
+
+  /// All categories
+  Future<Response> getCategories() {
+    return dio.get(Urls.ALL_CATEGORY);
+  }
+
+  /// Latest item list
+  Future<Response> getLatestItemList() {
+    return dio.get(Urls.LATEST_ITEM_LIST);
+  }
+
+ /// Trending item ist
+  Future<Response> getTrendingItemList() {
+    return dio.get(Urls.TRENDING_ITEM_LIST);
+  }
+
+
+//  /// search Flat
+//  Future<Response> searchFlat(FlatFilterRequest filterRequest) {
+//    print(Urls.SEARCH_FLAT +
+//        "${FlatFilterRequest.removeNullParams(filterRequest.toJson())}");
 //
-//import 'package:cookie_jar/cookie_jar.dart';
-//import 'package:dio/dio.dart';
-//
-//import 'package:flutter/material.dart';
-//
-//class ApiClient {
-////  ApiClient() {
-////    initClient();
-////  }
-//
-////for api client testing only
-//  ApiClient.test({@required this.dio});
-//
-//  Dio dio;
-//  BaseOptions _baseOptions;
-//
-////  initClient() async {
-////    _baseOptions = new BaseOptions(
-////        baseUrl: Urls.baseUrl,
-////        connectTimeout: 30000,
-////        receiveTimeout: 1000000,
-////        contentType: ContentType.json,
-////        followRedirects: true,
-////        headers: {
-////          HttpHeaders.contentTypeHeader: 'application/json',
-////          HttpHeaders.acceptHeader: 'application/json',
-////        },
-////        responseType: ResponseType.json,
-////        receiveDataWhenStatusError: true);
-////
-////    dio = Dio(_baseOptions);
-////
-////    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-////        (client) {
-////      client.badCertificateCallback =
-////          (X509Certificate cert, String host, int port) {
-////        return true;
-////      };
-////    };
-////
-////    dio.interceptors.add(CookieManager(new CookieJar()));
-////    dio.interceptors.add(InterceptorsWrapper(
-////      onRequest: (RequestOptions reqOptions) {
-////        return reqOptions;
-////      },
-////      onError: (DioError dioError) {
-////        return dioError.response;
-////      },
-////    ));
-////  }
-//
-//
-//
-////  /// search Flat
-////  Future<Response> searchFlat(FlatFilterRequest filterRequest) {
-////    print(Urls.SEARCH_FLAT +
-////        "${FlatFilterRequest.removeNullParams(filterRequest.toJson())}");
-////
-////    return dio.get(Urls.SEARCH_FLAT +
-////        "${FlatFilterRequest.removeNullParams(filterRequest.toJson())}");
-////  }
-//
-////  /// search Flatmate
-////  Future<Response> searchFlatmate(String searchText) {
-////    dio.options.headers
-////        .addAll({"Authorization": ObjectFactory().prefs.getAuthToken()});
-////    return dio
-////        .get(Urls.SEARCH_FLATMATE + "{\"search_param\"= \"$searchText\"}");
-////  }
-//
-//
-////  /// view Flat details
-////  Future<Response> getFlatDetails(String flatId) {
-////    return dio.get(Urls.VIEW_FLAT_DETAILS + flatId);
-////  }
-//
-//
-////  /// get preference
-////  Future<Response> getPreferences() {
-////    return dio.get(Urls.PREFERENCES);
-////  }
-//
-////  /// exit flat
-////  Future<Response> exitFlat() {
-////    dio.options.headers
-////        .addAll({"Authorization": ObjectFactory().prefs.getAuthToken()});
-////    return dio.delete(Urls.EXIT_FLAT);
-////  }
-//
-//
-//
-//
-//
-//
+//    return dio.get(Urls.SEARCH_FLAT +
+//        "${FlatFilterRequest.removeNullParams(filterRequest.toJson())}");
+//  }
+
+//  /// search Flatmate
+//  Future<Response> searchFlatmate(String searchText) {
+//    dio.options.headers
+//        .addAll({"Authorization": ObjectFactory().prefs.getAuthToken()});
+//    return dio
+//        .get(Urls.SEARCH_FLATMATE + "{\"search_param\"= \"$searchText\"}");
+//  }
+
+
+//  /// view Flat details
+//  Future<Response> getFlatDetails(String flatId) {
+//    return dio.get(Urls.VIEW_FLAT_DETAILS + flatId);
+//  }
+
+
+//  /// get preference
+//  Future<Response> getPreferences() {
+//    return dio.get(Urls.PREFERENCES);
+//  }
+
+//  /// exit flat
+//  Future<Response> exitFlat() {
+//    dio.options.headers
+//        .addAll({"Authorization": ObjectFactory().prefs.getAuthToken()});
+//    return dio.delete(Urls.EXIT_FLAT);
+//  }
+
+
+
+
+
+
 //
 //  /// Verify Otp
 //  Future<Response> verifyForgotPasswordOtp(VerifyOtpRequest verifyOtpRequest) {
@@ -266,4 +280,4 @@
 //    }
 //    return dio.post(Urls.ADD_FEEDBACK, data: feedbackRequest);
 //  }
-//}
+}

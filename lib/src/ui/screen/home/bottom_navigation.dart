@@ -1,4 +1,6 @@
+import 'package:cartapp/src/ui/screen/cart/cart_page.dart';
 import 'package:cartapp/src/ui/screen/home/home.dart';
+import 'package:cartapp/src/ui/screen/user/user_account.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class HomeNavigation extends StatefulWidget {
 
 class _HomeNavigationState extends State<HomeNavigation> {
   int _selectedIndex = 0;
-  final List<Widget> _children = [Explore(),Explore(),Explore()];
+  final List<Widget> _children = [Explore(),Cart(),UserAccount()];
   void _onItemTapped(int index) {
 //    if(index==1 || index==4||index==3)
 //      showToast("Coming soon");
@@ -36,16 +38,22 @@ class _HomeNavigationState extends State<HomeNavigation> {
             backgroundColor: Colors.white,showSelectedLabels: false,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon:Icon(Icons.explore),activeIcon: Text('Explore\n.',style: TextStyle(fontSize:16,fontWeight: FontWeight.w600,color: Colors.black),textAlign: TextAlign.center,),
+                icon:ImageIcon(
+                  AssetImage("asset/icon/explore.png"),color: Color(0xFFFF7600),
+                ),activeIcon: Text('Explore\n.',style: TextStyle(fontSize:16,fontWeight: FontWeight.w600,color: Colors.black),textAlign: TextAlign.center,),
                 title: Text('Explore'),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.add_shopping_cart),activeIcon: Text('Cart\n.',style: TextStyle(fontSize:18,fontWeight: FontWeight.w600,color: Colors.black),textAlign: TextAlign.center,),
+                icon: ImageIcon(
+                  AssetImage("asset/icon/cart.png"),color: Color(0xFFFF7600),
+                ),activeIcon: Text('Cart\n.',style: TextStyle(fontSize:18,fontWeight: FontWeight.w600,color: Colors.black),textAlign: TextAlign.center,),
                 title: Text('Cart'),
               ),
               BottomNavigationBarItem(
-                icon:  Icon(Icons.person_outline),
-                title: Text('Profile'),activeIcon: Text('Profile\n.',style: TextStyle(fontSize:18,fontWeight: FontWeight.w600,color: Colors.black),textAlign: TextAlign.center,),
+                icon:  ImageIcon(
+                  AssetImage("asset/icon/user_account.png"),color: Color(0xFFFF7600),
+                ),
+                title: Text('Account'),activeIcon: Text('Account\n.',style: TextStyle(fontSize:18,fontWeight: FontWeight.w600,color: Colors.black),textAlign: TextAlign.center,),
               ),
             ],
             currentIndex: _selectedIndex,

@@ -1,7 +1,7 @@
 
 import 'package:cartapp/src/ui/screen/cart/cart_page.dart';
 import 'package:cartapp/src/ui/screen/home/bottom_navigation.dart';
-import 'file:///E:/finekube/cart_app/lib/src/ui/screen/login/login.dart';
+import 'package:cartapp/src/ui/screen/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,7 +39,7 @@ class _AppState extends State<App> {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: appState.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
-          home:Cart(),
+          home:Login(),
         );
       },
     );
