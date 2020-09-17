@@ -109,11 +109,11 @@ class _ItemDetailsState extends State<ItemDetails>
                       decoration: new BoxDecoration(
                         gradient: new LinearGradient(
                           colors: [
-                            Colors.black.withOpacity(.50),
-                            Colors.black.withOpacity(.50),
-                            Colors.black.withOpacity(.34),
                             Colors.black.withOpacity(.23),
-                            Colors.black.withOpacity(.14),
+                            Colors.black.withOpacity(.23),
+                            Colors.black.withOpacity(.11),
+                            Colors.black.withOpacity(.11),
+                            Colors.black.withOpacity(.09),
                             Colors.black.withOpacity(.05),
                             Colors.black.withOpacity(.00),
                           ],
@@ -125,7 +125,7 @@ class _ItemDetailsState extends State<ItemDetails>
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 50.0, left: 12, right: 12),
+                        const EdgeInsets.only(top: 50.0, left: 12, right: 16),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,15 +133,17 @@ class _ItemDetailsState extends State<ItemDetails>
                         IconButton(
                           icon: Icon(
                             Icons.arrow_back_ios,
-                            size: 24,
+                            size: 20,
                             color: Colors.white,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                         ),
 
                         Icon(
                           Icons.star_border,
-                          size: 24,
+                          size: 20,
                           color: Colors.white,
                         )
                       ],
@@ -156,11 +158,11 @@ class _ItemDetailsState extends State<ItemDetails>
               child: SlideTransition(
                 position: _tween.animate(_controller),
                 child: DraggableScrollableSheet(
-                  minChildSize: .6,
+                  minChildSize: .45,
                   // 0.1 times of available height, sheet can't go below this on dragging
                   maxChildSize: .99,
                   // 0.7 times of available height, sheet can't go above this on dragging
-                  initialChildSize: .6,
+                  initialChildSize: .5,
                   // 0.1 times of available height, sheet start at this size when opened for first time
                   builder: (BuildContext context, ScrollController controller) {
 //                    if (controller.hasClients) {

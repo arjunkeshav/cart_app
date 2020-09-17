@@ -42,7 +42,9 @@ class _CategoryPageState extends State<CategoryPage> {
           ],
         ),
       ),
-      appBar: AppBar(leading: Icon(Icons.arrow_back_ios,size: 22,),
+      appBar: AppBar(leading: IconButton(icon: Icon(Icons.arrow_back_ios,size: 18,),onPressed: (){
+        Navigator.of(context).pop();
+      },),
         elevation: 0,centerTitle: true,
         title: Text(
           "Gadgets",

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cartapp/src/ui/screen/cart/checkout_page.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
@@ -58,7 +59,11 @@ class _CartState extends State<Cart> {
                 height: 40,
                 minWidth: 140,
                 child: FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                        CheckoutPage()));
+
+                  },
                   child: Text(
                     "CHECKOUT",
                     style: Theme.of(context)

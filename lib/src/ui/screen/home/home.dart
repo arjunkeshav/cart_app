@@ -3,6 +3,7 @@ import 'package:cartapp/src/bloc/bloc_category.dart';
 import 'package:cartapp/src/models/category_response.dart';
 import 'package:cartapp/src/models/latest_item_list_response.dart';
 import 'package:cartapp/src/ui/screen/category/category_page.dart';
+import 'package:cartapp/src/ui/screen/category/item_details_page.dart';
 import 'package:cartapp/src/ui/screen/search/search.dart';
 import 'package:cartapp/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ ItemListResponse trending = new ItemListResponse();
       child: Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
         body: Padding(
-          padding: const EdgeInsets.only(left:16.0,top: 16),
+          padding: const EdgeInsets.only(top: 16),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -53,22 +54,25 @@ ItemListResponse trending = new ItemListResponse();
                   height: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 16),
+                  padding: const EdgeInsets.only(left:16.0,right: 16),
                   child: _search(),
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "Categories",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1
-                          .copyWith(fontWeight: FontWeight.w800, fontSize: 20),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0,),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Categories",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1
+                            .copyWith(fontWeight: FontWeight.w800, fontSize: 20),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -83,7 +87,7 @@ ItemListResponse trending = new ItemListResponse();
                   height: 30,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 16),
+                  padding: const EdgeInsets.only(left:16,right: 16),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,20 +123,26 @@ ItemListResponse trending = new ItemListResponse();
                 SizedBox(
                   height: 20,
                 ),
-                buildContainerAds(context),
+                Padding(
+                  padding: const EdgeInsets.only(left:16,right:16.0),
+                  child: buildContainerAds(context),
+                ),
                 SizedBox(
                   height: 30,
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "Featured Brands",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1
-                          .copyWith(fontWeight: FontWeight.w800, fontSize: 20),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Featured Brands",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1
+                            .copyWith(fontWeight: FontWeight.w800, fontSize: 20),
+                      ),
+                    ],
+                  ),
                 ),
 
                 Container(
@@ -142,7 +152,7 @@ ItemListResponse trending = new ItemListResponse();
                   height: 30,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 16),
+                  padding: const EdgeInsets.only(left:16,right: 16),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,15 +208,22 @@ ItemListResponse trending = new ItemListResponse();
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            CategoryPage()));
-              },
-              child: buildCategoryTile(context,categoryResponse[index]));
+          return Row(
+            children: [
+              SizedBox(
+                width: index==0?16:0,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                CategoryPage()));
+                  },
+                  child: buildCategoryTile(context,categoryResponse[index])),
+            ],
+          );
         });
   }
 
@@ -218,18 +235,19 @@ ItemListResponse trending = new ItemListResponse();
         itemBuilder: (BuildContext context, int index) {
           return Row(
             children: <Widget>[
-              GestureDetector(
-                  onTap: () {
-//                    Navigator.push(
-//                        context,
-//                        MaterialPageRoute(
-//                            builder: (context) =>
-//                                SearchFlatViewDetails(flat: flatList[index])));
-                  },
-                  child: buildLatestTile(context,itemListResponse.products[index])),
               SizedBox(
                 width: 16,
               ),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ItemDetails()));
+                  },
+                  child: buildLatestTile(context,itemListResponse.products[index])),
+
             ],
           );
         });
@@ -242,6 +260,9 @@ ItemListResponse trending = new ItemListResponse();
         itemBuilder: (BuildContext context, int index) {
           return Row(
             children: <Widget>[
+              SizedBox(
+                width: 16,
+              ),
               GestureDetector(
                   onTap: () {
 //                    Navigator.push(
@@ -251,9 +272,7 @@ ItemListResponse trending = new ItemListResponse();
 //                                SearchFlatViewDetails(flat: flatList[index])));
                   },
                   child: buildFeaturedBrandTile(context)),
-              SizedBox(
-                width: 16,
-              ),
+
             ],
           );
         });
@@ -403,6 +422,7 @@ ItemListResponse trending = new ItemListResponse();
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
         color: Colors.white,
 
         image: new DecorationImage(
@@ -417,7 +437,7 @@ ItemListResponse trending = new ItemListResponse();
         height: Utils().screenHeight(context, dividedBy: 19),
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
-          color: Color(0xFFF0008),
+          color: Color(0xF000008),
           borderRadius: BorderRadius.all(Radius.circular(18)),
         ),
         child: Row(
@@ -429,18 +449,9 @@ ItemListResponse trending = new ItemListResponse();
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                Search()));
-                      },
-                      child: Icon(
-                        Icons.search,
-                        size: 28,
-                      ),
+                    child: Icon(
+                      Icons.search,
+                      size: 28,
                     ),
                   ),
                 ],
@@ -453,6 +464,14 @@ ItemListResponse trending = new ItemListResponse();
   TextFormField buildTextFormField(BuildContext context) {
     return TextFormField(
       controller: textEditingController,
+      readOnly: true,
+      onTap: (){
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    Search()));
+      },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.only(top: 2, left: 18),
         enabledBorder: OutlineInputBorder(

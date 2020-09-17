@@ -70,8 +70,8 @@ resizeToAvoidBottomInset: false,
                           "Clear all",
                           style: Theme.of(context)
                               .textTheme
-                              .body2
-                              .copyWith(color: Colors.redAccent),
+                              .bodyText1
+                              .copyWith(color: Colors.redAccent,fontSize: 14),
                         ),
                       )
                     ],
@@ -99,22 +99,10 @@ resizeToAvoidBottomInset: false,
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Color(0xFFF0008),
+                                      color: Color(0xF000008),
                                       borderRadius:
                                       BorderRadius.all(Radius.circular(14)),
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Colors.grey.withOpacity(.32),
-                                              width: .5),
-                                          top: BorderSide(
-                                              color: Colors.grey.withOpacity(.32),
-                                              width: .5),
-                                          left: BorderSide(
-                                              color: Colors.grey.withOpacity(.32),
-                                              width: .5),
-                                          right: BorderSide(
-                                              color: Colors.grey.withOpacity(.32),
-                                              width: .5)),
+
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -196,7 +184,7 @@ resizeToAvoidBottomInset: false,
     height: Utils().screenHeight(context, dividedBy: 19),
     decoration: BoxDecoration(
       shape: BoxShape.rectangle,
-      color: Color(0xFFF0008),
+      color: Color(0xF000008),
       borderRadius: BorderRadius.all(Radius.circular(18)),
     ),
     child: Row(

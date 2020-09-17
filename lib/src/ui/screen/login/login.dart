@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cartapp/src/ui/screen/cart/checkout_page.dart';
+import 'package:cartapp/src/ui/screen/cart/summary.dart';
 import 'package:cartapp/src/ui/screen/home/bottom_navigation.dart';
 import 'package:cartapp/src/ui/screen/login/sign_up.dart';
 import 'package:cartapp/src/ui/screen/order/order_history.dart';
@@ -24,7 +25,7 @@ class _LoginState extends State<Login> {
           gradient: new LinearGradient(
             colors: [
               Color(0xFFFFFFF),
-              Color(0xFF0000F),
+              Color(0xF000008),
 
 
 
@@ -136,7 +137,7 @@ class _LoginState extends State<Login> {
                         child: FlatButton(
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                                CheckoutPage()));
+                                HomeNavigation()));
                           },
                           child: Text(
                             "SIGN IN",
